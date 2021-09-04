@@ -23,7 +23,7 @@
                 @endif
                 <figure class="text-center">
                     <h1>PRODUCTOS</h1>
-</figure>
+                </figure>
                 <div class="table-responsive">
                     <table class="table table-striped mt-3">
                         <thead>
@@ -47,7 +47,7 @@
                                 <td>{{$product -> precio}}</td>
                                 <td>{{$product -> created_at}}</td>
                                 <td>{{$product -> updated_at}}</td>
-                                <td> <img src="{{ asset('uploads/products/'.$product->image)}}"  width="120px"  alt="..."></td>
+                                <td> <img src="{{ asset('uploads/products/'.$product->image)}}" width="120px" alt="..."></td>
                                 <td>
                                     <form action="{{route('products.destroy',$product->id)}}" method="post">
                                         @csrf
