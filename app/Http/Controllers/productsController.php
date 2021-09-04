@@ -65,26 +65,26 @@ class productsController extends Controller
     public function update(Request $request, $id)
     {
         $products = products::find($id);
-        if ($request->hasFile('fileImage')) {
+        $products->name= $request->input('name');
+        $products->description = $request->input('description');
+        $products->precio = $request->input('price');
+        $products->companies_id = $request->input('companie_id');
 
+        if ($request->hasFile('fileImage')) 
+        {
             $destination = 'uploads/products/' . $products->image;
-
-            if (File::exists($destination)) {
+            if (File::exists($destination)) 
+            {
                 File::delete($destination);
             }
-
             $file = $request->file('fileImage');
             $extention = $file->getClientOriginalExtension();
             $filename = time() . '.' . $extention;
             $file->move('uploads/products/', $filename);
+            $products->image = $filename;
         }
-        $products = products::find($id)->update([
-            'name' => $request->input('name'),
-            'description' => $request->input('description'),
-            'precio' => $request->input('price'),
-            'image' => $filename,
-            'companies_id' => $request->input('companie_id')
-        ]);
+    
+    $products->update();
         return redirect('products')->with('status', 'Se ha actualizado correctamente');
     }
 }

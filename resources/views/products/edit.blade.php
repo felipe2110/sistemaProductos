@@ -33,9 +33,9 @@
                     </div>
                     <div class="form-group">
                         <label for="">Compañia</label>
-                        <select id="Select" class="form-select"  value="{{$products -> companies_id}}">
-                            @foreach($companies as $companie)
-                            <option value="{{$companie -> id}}" selected="{{$products -> companies_id}}">{{$companie -> name}}</option>
+                        <select id="Select" class="form-select"  name="companie_id">
+                            @foreach($companies as $company)
+                            <option value="{{$company -> id}}"  {{ $company -> id == $products -> companies_id ? 'selected' : '' }}>{{$company -> name}}</option>
                             @endforeach()
                         </select>
                     </div>
