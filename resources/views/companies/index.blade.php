@@ -14,46 +14,42 @@
         <div class="row">
             <div class="col-md-12">
                 <br />
-                <a href="{{url('products/create')}}" class="btn btn-primary">Crear nuevo producto</a>
-                <a href="{{url('companies')}}" class="btn btn-warning">Ver compañias</a>
+                <a href="{{url('companies/create')}}" class="btn btn-primary">Crear nueva compañia</a>
+                <a href="{{url('products')}}" class="btn btn-warning">Ver productos</a>
                 @if(session('status'))
                 <div class="alert alert-success mt-3">
                     {{session('status')}}
                 </div>
                 @endif
                 <figure class="text-center">
-                    <h1>PRODUCTOS</h1>
-</figure>
+                    <h1>COMPAÑIAS</h1>
+                </figure>
                 <div class="table-responsive">
                     <table class="table table-striped mt-3">
                         <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>NOMBRE</th>
-                                <th>DESCRIPCIÓN</th>
-                                <th>PRECIO</th>
+                                <th>NIT</th>
                                 <th>FECHA DE CREACIÓN</th>
                                 <th>FECHA DE ACTUALIZACIÓN</th>
-                                <th>IMAGEN</th>
                                 <th>ACCIONES</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($products as $product)
+                            @foreach($companies as $company)
                             <tr>
-                                <td>{{$product -> id}}</td>
-                                <td>{{$product -> name}}</td>
-                                <td>{{$product -> description}}</td>
-                                <td>{{$product -> precio}}</td>
-                                <td>{{$product -> created_at}}</td>
-                                <td>{{$product -> updated_at}}</td>
-                                <td> <img src="{{ asset('uploads/products/'.$product->image)}}"  width="120px"  alt="..."></td>
+                                <td>{{$company -> id}}</td>
+                                <td>{{$company -> name}}</td>
+                                <td>{{$company -> nit}}</td>
+                                <td>{{$company -> created_at}}</td>
+                                <td>{{$company -> updated_at}}</td>
                                 <td>
-                                    <form action="{{route('products.destroy',$product->id)}}" method="post">
+                                    <form action="{{route('companies.destroy',$company->id)}}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <a href="{{route('products.show',$product->id)}}" class="btn btn-sm btn-info">Detalles</a>
-                                        <a href="{{route('products.edit',$product->id)}}" class="btn btn-sm btn-warning">Editar</a>
+                                        <a href="{{route('companies.show',$company->id)}}" class="btn btn-sm btn-info">Detalles</a>
+                                        <a href="{{route('companies.edit',$company->id)}}" class="btn btn-sm btn-warning">Editar</a>
                                         <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
                                     </form>
                                 </td>
@@ -62,7 +58,7 @@
                         </tbody>
                     </table>
                 </div>
-                {{$products-> links()}}
+                {{$companies-> links()}}
             </div>
         </div>
     </div>
